@@ -1,2 +1,3 @@
 # My_One_Room
- Where is my room
+ 내 원룸 찾는 커뮤니티
+ 

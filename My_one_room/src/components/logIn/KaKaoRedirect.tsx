@@ -1,9 +1,6 @@
 import React,{useEffect} from "react";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
-interface Auth {
-  firebaseToken: string;
-}
 
 export default async function KaKaoRedirect() {
   let params = new URL(document.location.toString()).searchParams;
@@ -11,15 +8,21 @@ export default async function KaKaoRedirect() {
   let grant_type = "authorization_code";
   let client_id = "b719ebe14a073c660f425715b992a64f";
 
+  console.log(code);
   if (!code) {
     return <Navigate to="/login" />
   }
-  const res = await axios.post(
+   const res = await axios.post(
     `https://kauth.kakao.com/oauth/token
         grant_type=${grant_type}
         &client_id=${client_id}
         &redirect_uri=http://localhost:5173/oauth
-        &code=${code}`
+        &code=${code}`,
+    {
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+      }
+    }
   ); 
 
   console.log(res);
@@ -27,6 +30,5 @@ export default async function KaKaoRedirect() {
   console.log(res.config);
   console.log(res.status);
   console.log(res.request);
-
 
 }

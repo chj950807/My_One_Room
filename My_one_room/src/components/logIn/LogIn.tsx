@@ -1,15 +1,21 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Head from "../header/Head";
 import { auth } from "./UserData";
 import { useNavigate } from "react-router-dom";
 import { KAKAO_AUTH_URI } from "./KakaoLogin";
-
+import KaKaoRedirect from "./KaKaoRedirect";
+interface Datas{
+  providerId: string
+  uid: string
+}
 export default function LogIn() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [userData, setUserData] = useState<Datas|null>(null);
+
 
   const onEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -40,6 +46,20 @@ export default function LogIn() {
     }
   };
 
+  const handleKaKaoLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    // const provider = 
+  }
+  const handleGoogleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider).then((data) => {
+      setUserData(data.user);
+      navigate('/');
+    }).catch((err) => {
+      console.log(err);
+    });
+  };
   return (
     <div>
       <Head />
@@ -92,14 +112,29 @@ export default function LogIn() {
                         </span>
                       </Link>
                     </div>
-                    <div className="flex justify-center pt-3">
+                    <div className="flex justify-center pt-3  ">
                       <a href={KAKAO_AUTH_URI}>
-                        <img src="./src/assets/kakao_login_medium_wide.png" />
+                        <img
+                          src="./src/assets/kakao_login_medium_wide.png"
+                          className="border-2 border-white rounded-xl "
+                        />
                       </a>
+                    </div>
+                    <div className="flex justify-center pt-3">
+                      <button
+                        onClick={handleGoogleLogin}
+                        type="button"
+                        className="bg-gray-100 flex w-full h-auto rounded-xl border-2 border-blue-400"
+                      >
+                        <img src="./src/assets/google_light_pressed_ios.svg" />
+                        <div className="self-center pl-20 font-dohyeon text-gray-800 ">
+                          구글 로그인
+                        </div>
+                      </button>
                     </div>
                   </div>
                   <div className="form-control mt-6">
-                    <button className="btn btn-primary font-sans">Login</button>
+                    <button className="btn btn-primary font-sans" type="submit">Login</button>
                   </div>
                 </div>
               </form>

@@ -20,9 +20,7 @@ export default function Filter() {
   return (
     <div className="pt-10 flex justify-center ">
       <div className="text-lg font-jua text-gray-800">
-        <div className="pb-1 pl-8">
-        필터
-        </div>
+        <div className="pb-1 pl-8">필터</div>
         <div className="border bg-violet-300 px-10 py-5 border-4 border-white rounded-3xl text-gray-800">
           <form className="desktop:flex">
             <div className="flex flex-col text-base p-2">
@@ -36,7 +34,7 @@ export default function Filter() {
                 min="0"
                 max="5"
                 value="0"
-                className="range range-info"
+                className="range range-info border-2 border-white"
                 step="0.1"
               />
               <div className="w-80 flex justify-between text-xs px-2 pt-1">
@@ -59,7 +57,7 @@ export default function Filter() {
                 min="0"
                 max="5"
                 value="5"
-                className="range range-info"
+                className="range range-info border-2 border-white"
                 step="1"
               />
               <div className="w-80 flex justify-between text-xs px-2 pt-1">

@@ -13,7 +13,8 @@ export default function Mainboard() {
   return (
     <div>
       <div className="pt-7">
-        <div className="overflow-x-autoflex flex justify-center">
+        <div className="overflow-x-autoflex flex flex-col  items-center ">
+
           <table className=" table table-zebra w-3/4  border-collapse border-white border-4">
             {/* <!-- head --> */}
             <thead>

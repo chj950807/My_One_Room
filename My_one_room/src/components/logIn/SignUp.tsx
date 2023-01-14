@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Head from "../header/Head";
-import {
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "./UserData";
 import { updateProfile } from "firebase/auth";
@@ -74,9 +72,8 @@ export default function SignUp() {
 
   return (
     <div>
-      <div className="">
-        <Head />
-      </div>
+      <Head />
+
       <div className="hero min-h-screen bg-violet-200 font-jua ">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">

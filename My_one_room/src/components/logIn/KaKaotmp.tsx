@@ -7,9 +7,12 @@ export default function KaKaotmp() {
 
   return (
     <div>
-      <Link to={'/'}>
-      돌이가기
-      </Link>
+      <div>
+        <Link to={"/"}>
+          <div className='text-4xl'>돌아가기</div>
+        </Link>
+        인증 {'>'} 토큰받기 {'>'} ???
+      </div>
     </div>
-  )
+  );
 }

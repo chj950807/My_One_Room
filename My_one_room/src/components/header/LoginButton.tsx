@@ -43,7 +43,9 @@ export default function LoginButton() {
         >
           {/* 나중에 로그인 상태면 로그아웃과, 프로필 항목 나오게 로그아웃 상태면 로그인 할목만 나오게만들자*/}
           <li>
-            <a className="justify-between">Profile</a>
+            <Link to={'/profile'}>
+            <div className="justify-between">Profile</div>
+            </Link>
           </li>
           <li>
             <div onClick={onLogOut}> Logout</div>

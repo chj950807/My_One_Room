@@ -8,10 +8,12 @@ export default function Home() {
   console.log(auth.currentUser);
   return (
     <div>
-          <Head />
-          <Filter />
-          <NewpostButton />
-          <Mainboard />
+      <div className="bg-violet-200">
+        <Head />
+        <Filter />
+        <NewpostButton />
+        <Mainboard />
+      </div>
     </div>
   );
 }

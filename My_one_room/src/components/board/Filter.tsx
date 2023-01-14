@@ -19,9 +19,11 @@ export default function Filter() {
 
   return (
     <div className="pt-10 flex justify-center ">
-      <div className="text-lg font-jua">
+      <div className="text-lg font-jua text-gray-800">
+        <div className="pb-1 pl-8">
         필터
-        <div className="border">
+        </div>
+        <div className="border bg-violet-300 px-10 py-5 border-4 border-white rounded-3xl text-gray-800">
           <form className="desktop:flex">
             <div className="flex flex-col text-base p-2">
               <label htmlFor="rating" className="flex justify-center pb-2 ">

@@ -9,6 +9,7 @@ export default function Title() {
           내원룸
         </div>
       </Link>
+      <div className='text-white pl-1 flex self-end pb-2'>내가 원하는 방</div>
     </div>
   );
 }

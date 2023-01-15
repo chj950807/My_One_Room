@@ -1,6 +1,6 @@
 import React from "react";
 import { homedata } from "./dummy.json";
-
+import NewpostButton from "./NewpostButton";
 interface Datas {
   id: number;
   nickname: string;
@@ -13,8 +13,10 @@ export default function Mainboard() {
   return (
     <div>
       <div className="pt-7">
+        <div className="text-black text-3xl font-bold font-jua desktop:w-5/6 ">
+          <NewpostButton />
+        </div>
         <div className="overflow-x-autoflex flex flex-col  items-center ">
-
           <table className=" table table-zebra w-3/4  border-collapse border-white border-4">
             {/* <!-- head --> */}
             <thead>

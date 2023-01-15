@@ -6,6 +6,7 @@ import { auth } from "./UserData";
 import { useNavigate } from "react-router-dom";
 import { KAKAO_AUTH_URI } from "./KakaoLogin";
 import KaKaoRedirect from "./KaKaoRedirect";
+
 interface Datas{
   providerId: string
   uid: string
@@ -48,8 +49,10 @@ export default function LogIn() {
 
   const handleKaKaoLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    // const provider = 
+
+    //미구현
   }
+
   const handleGoogleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const provider = new GoogleAuthProvider();

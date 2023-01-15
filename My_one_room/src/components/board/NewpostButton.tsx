@@ -1,13 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../logIn/UserData";
 export default function NewpostButton() {
+  const navigate = useNavigate();
+  const isLogin = () => {
+    if (auth.currentUser === null) {
+      alert('로그인 후 작성가능합니다.');
+      navigate('/login');
+    } else {
+      navigate('/NewPost');
+    }
+  }
   return (
-    <div className="flex justify-end pt-6 pr-5 desktop:pr-0 desktop:flex desktop:justify-end desktop:w-5/6 ">
-      <Link to={"/NewPost"}>
-        <button className="btn-warning btn btn-sm border border-white">
+    <div className="flex justify-end py-6 desktop:pr-0 ">
+        <button className="btn-warning btn btn-sm border border-white" onClick={isLogin}>
           새글등록
         </button>
-      </Link>
     </div>
   );
 }

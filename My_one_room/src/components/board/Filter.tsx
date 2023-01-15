@@ -33,17 +33,16 @@ export default function Filter() {
                 type="range"
                 min="0"
                 max="5"
-                value="0"
                 className="range range-info border-2 border-white"
                 step="0.1"
               />
               <div className="w-80 flex justify-between text-xs px-2 pt-1">
-                <span>0</span>
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
                 <span>5</span>
+                <span>4</span>
+                <span>3</span>
+                <span>2</span>
+                <span>1</span>
+                <span>0</span>
               </div>
             </div>
             <div className="desktop:pl-10 flex flex-col text-base p-2">
@@ -54,9 +53,8 @@ export default function Filter() {
                 onChange={onHandleDate}
                 id="rating"
                 type="range"
-                min="0"
+                min="1"
                 max="5"
-                value="5"
                 className="range range-info border-2 border-white"
                 step="1"
               />

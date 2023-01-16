@@ -5,8 +5,10 @@ import { auth } from "../logIn/UserData";
 import { TfiPencil } from "react-icons/tfi";
 import { BiMap } from "react-icons/bi";
 import Evaluation from "./Evaluation";
-
+import EvaluationData from "./evaldata/EvaluationData";
 export default function NewPost() {
+
+ EvaluationData()
   return (
     <div>
       <Head />

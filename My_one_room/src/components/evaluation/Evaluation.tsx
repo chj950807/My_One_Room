@@ -1,5 +1,6 @@
 import React from "react";
 import { EvaluationData } from "./EvaluationData.json";
+import StarRating from "./StarRating";
 export default function Evaluation() {
   interface Datas {
     id: number;
@@ -15,36 +16,12 @@ export default function Evaluation() {
           return (
             <div key={data.id}>
               <div className="text-center text-lg border-4 border-black bg-white card flex flex-col items-start pl-5 mb-2 py-1 ">
-                <p className="whitespace-nowrap">
+                <p >
                   {data.id}. {data.detail}
                 </p>
               </div>
-              <div className="rating rating-lg flex justify-evenly mb-3">
-                <input
-                  type="radio"
-                  name="rating-8"
-                  className="mask mask-star-2 bg-orange-400"
-                />
-                <input
-                  type="radio"
-                  name="rating-8"
-                  className="mask mask-star-2 bg-orange-400"
-                />
-                <input
-                  type="radio"
-                  name="rating-8"
-                  className="mask mask-star-2 bg-orange-400"
-                />
-                <input
-                  type="radio"
-                  name="rating-8"
-                  className="mask mask-star-2 bg-orange-400 "
-                />
-                <input
-                  type="radio"
-                  name="rating-8"
-                  className="mask mask-star-2 bg-orange-400"
-                />
+              <div className="flex justify-evenly mb-3">
+                <StarRating key={data.id} check={data.check} />
               </div>
               <div className="text-sm flex justify-evenly pl-1 mb-2">
                 <span>{data.message[0]}</span>
@@ -57,7 +34,7 @@ export default function Evaluation() {
           );
         })}
         <div className="text-center text-lg border-4 border-black bg-white card flex flex-col items-start pl-5 mb-2 py-1 ">
-          <p className="whitespace-nowrap">
+          <p >
             13.그 외 좋았던 점, 불편했던 점 자유롭게 적어주세요!!
           </p>
         </div>

@@ -1,12 +1,16 @@
-import { async } from "@firebase/util";
+
 import React, { useState, useRef, useEffect } from "react";
 import DaumPostCode from "react-daum-postcode";
 import { HiMagnifyingGlass } from "react-icons/hi2";
-
 interface AddressData {
   address: string;
 }
-export default function Address() {
+interface Props {
+  getAddress: any;
+  getDetailAddress: any;
+
+}
+export default function Address(props:Props) {
   const [openPostcode, setOpenPostcode] = useState<boolean>(false);
   const [address, setAddress] = useState<string>("");
   const [showDetail, setShowDetail] = useState<boolean>(false);
@@ -14,6 +18,10 @@ export default function Address() {
 
   const outside = useRef<any>(null);
 
+  const sendAddressValue = () => {
+    props.getAddress(address)
+    props.getDetailAddress(detailAddress);
+  }
   const AddressClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setOpenPostcode(true);
@@ -26,6 +34,7 @@ export default function Address() {
   const DetailAddressHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setDetailAddress(e.currentTarget.value);
+    sendAddressValue();
   };
 
 
@@ -64,7 +73,7 @@ export default function Address() {
       </div>
 
       <div className="flex pt-3">
-        <button onClick={AddressClick} className="btn btn-square btn-primary">
+        <button onClick={AddressClick} className="btn btn-square btn-primary" type="button">
           <HiMagnifyingGlass className="text-xl font-bold text-white" />
         </button>
         <div>

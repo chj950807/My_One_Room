@@ -1,36 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 
 interface Props {
   check: string;
+  id: number;
+  getStars: any;
 }
 
 export default function App(props: Props) {
-  const [stars, setStars] = useState(0);
+  const [stars, setStars] = useState<number[]>([0, 0]);
+  const sendStarsValue = () => {
+    props.getStars(stars);
+  };
 
-  const onClickStar = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickStar = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    const attr_string = e.currentTarget.getAttribute("star-num");
     let attr_num;
+    const attr_string = e.currentTarget.getAttribute("star-num");
     if (attr_string !== null) {
       attr_num = Number(attr_string);
+      setStars([props.id, attr_num]);
     }
     const input_star = document.getElementsByClassName(`${props.check}`);
-    let current_Star = 0;
     if (attr_num) {
-      if (attr_num > current_Star) {
+      if (attr_num > stars[1]) {
         for (let i = 0; i < 5; i++) {
           input_star[i].classList.remove("text-yellow-400");
         }
       }
       for (let i = 0; i < attr_num; i++) {
         input_star[i].classList.add("text-yellow-400");
-        current_Star = i;
-        setStars(i);
       }
     }
-
   };
 
   return (

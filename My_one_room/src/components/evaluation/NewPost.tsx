@@ -1,52 +1,104 @@
-import React from "react";
-import Head from "../header/Head";
-import Address from "./Address";
-import { auth } from "../logIn/UserData";
+import React, { useState } from "react";
+
 import { TfiPencil } from "react-icons/tfi";
 import { BiMap } from "react-icons/bi";
+import { auth } from "../logIn/UserData";
+import Head from "../header/Head";
+import Address from "./Address";
 import Evaluation from "./Evaluation";
 import EvaluationData from "./evaldata/EvaluationData";
 export default function NewPost() {
+  EvaluationData();
 
- EvaluationData()
+  const [detailAddress, setDetailAddress] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [evals, setEvals] = useState<number[]>([
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  ]);
+  const [eval13, setEval13] = useState<string>("");
+
+
+
+  const getAddress = (addr: string) => {
+    setAddress(addr);
+  };
+  const getDetailAddress = (detailAddr: string) => {
+    setDetailAddress(detailAddr);
+  };
+  const getEvals = (ev: number[]) => {
+    setEvals(ev);
+  }
+  const getEval13 = (ev13: string) => {
+    setEval13(ev13);
+  }
+  let real_addr = address + " " + detailAddress;
+  //나중에지우기
+  // console.log(real_addr);
+  console.log(evals);
+  // console.log(eval13);
+
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      console.log();
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div>
       <Head />
+
       <div className=" py-10 px-10 min-h-screen bg-violet-200 text-gray-800 font-jua text-lg">
         <div className="font-bold text-5xl desktop:whitespace-nowrap border-4 border-black card px-20 py-2 text-center mb-7">
           방 평가하기
         </div>
-        <div className="hero-content text-center border-4 border-black bg-violet-100 min-w-full card">
-          <div className="max-w-md ">
-            <div className="font-bold text-3xl desktop:whitespace-nowrap border-4 border-black card px-20 py-2">
-              정보
-            </div>
-            <div className="flex flex-col items-start pt-2 pb-32">
-              <div className="flex flex-row items-center">
-                <TfiPencil className=" font-sans" />
-                <span className="pl-1 py-10 ">닉네임:</span>
-                <span className="pl-1 text-base  text-blue-600">
-                  {auth.currentUser?.displayName}
-                </span>
-              </div>
-              <div className="flex flex-row items-center">
-                <BiMap className=" font-sans" />
-                <span className="pl-1 whitespace-nowrap">평가할 방 주소</span>
-              </div>
-              <Address />
-            </div>
-          </div>
-        </div>
-        <div className=" py-10 px-10 min-h-screen bg-violet-200 text-gray-800 font-jua text-lg">
+        <form onSubmit={onSubmitHandler}>
           <div className="hero-content text-center border-4 border-black bg-violet-100 min-w-full card">
-            <div className="w-3/4 flex items-center flex-col">
-              <div className="w-2/3 text-center text-3xl border-4 border-black bg-violet-100 card mb-5 ">
-                평가항목
+            <div className="max-w-md ">
+              <div className="font-bold text-3xl desktop:whitespace-nowrap border-4 border-black card px-20 py-2">
+                정보
               </div>
-              <Evaluation />
+              <div className="flex flex-col items-start pt-2 pb-32">
+                <div className="flex flex-row items-center">
+                  <TfiPencil className=" font-sans" />
+
+                  <span className="pl-1 py-10 ">닉네임:</span>
+                  <span className="pl-1 text-base  text-blue-600">
+                    {auth.currentUser?.displayName}
+                  </span>
+                </div>
+                <div className="flex flex-row items-center">
+                  <BiMap className=" font-sans" />
+                  <span className="pl-1 whitespace-nowrap">평가할 방 주소</span>
+                </div>
+                <Address
+                  getAddress={getAddress}
+                  getDetailAddress={getDetailAddress}
+                />
+              </div>
             </div>
           </div>
-        </div>
+          <div className=" py-10 px-10 min-h-screen bg-violet-200 text-gray-800 font-jua text-lg">
+            <div className="hero-content text-center border-4 border-black bg-violet-100 min-w-full card">
+              <div className="w-3/4 flex items-center flex-col">
+                <div className="w-2/3 text-center text-3xl border-4 border-black bg-violet-100 card mb-5 ">
+                  평가항목
+                </div>
+                <Evaluation getEvals={getEvals} getEval13={getEval13} />
+              </div>
+              <div className="mt-10">
+                <button
+                  className="btn btn-wide btn-primary text-lg"
+                  type="submit"
+                >
+                  작성완료
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );

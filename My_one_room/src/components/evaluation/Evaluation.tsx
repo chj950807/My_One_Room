@@ -8,45 +8,13 @@ interface Datas {
   message: string[];
 }
 
-interface Props {
-  getEvals: any;
-  getEval13: any;
-}
-export default function Evaluation(props: Props) {
+
+export default function Evaluation() {
   const [eval13, setEval13] = useState<string>("");
-  const [stars, setStars] = useState<number[]>([0,0]);
-  const [evals, setEvals] = useState<number[]>([
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  ]);
-
-  const sendEval13Value = () => {
-    props.getEval13(evals);
-  };
-  const sendEvalsValue = () => {
-    props.getEvals(evals);
-  };
-
-  const getStars = (stars: number[]) => {
-    setStars(stars);
-  };
-
-  console.log(stars);
   const onEvaluateOthers = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
     setEval13(e.currentTarget.value);
-    sendEval13Value();
   };
-  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  arr[stars[0]-1] =stars[1];
-  console.log(arr);
-//stars[0],star[1]
-  // useState(() => {
-  //   let tmp = [...evals];
-  //   tmp[stars[0]] = stars[1];
-  //   setEvals(tmp);
-  //   console.log(evals);
-  // },[]);
-
 
   return (
     <div className="min-w-full">
@@ -63,7 +31,6 @@ export default function Evaluation(props: Props) {
                 key={data.id}
                 check={data.check}
                 id={data.id}
-                getStars={getStars}
               />
             </div>
             <div className="text-sm flex justify-evenly pl-1 mb-2">

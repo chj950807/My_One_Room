@@ -1,4 +1,5 @@
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useDispatch } from "react-redux";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Head from "../header/Head";
@@ -6,12 +7,14 @@ import { auth } from "./UserData";
 import { useNavigate } from "react-router-dom";
 import { KAKAO_AUTH_URI } from "./KakaoLogin";
 import KaKaoRedirect from "./KaKaoRedirect";
+import { LoginSuccess } from "../../redux/user";
 
 interface Datas{
   providerId: string
   uid: string
 }
 export default function LogIn() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -35,6 +38,9 @@ export default function LogIn() {
         email,
         password
       ).then(() => {
+        console.log(auth.currentUser?.email);
+        console.log(auth.currentUser?.displayName);
+        dispatch(LoginSuccess({email:auth.currentUser?.email,displayName:auth.currentUser?.displayName}));
         console.log("로그인 성공");
         navigate("/");
       });
@@ -58,6 +64,12 @@ export default function LogIn() {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then((data) => {
       setUserData(data.user);
+      dispatch(
+        LoginSuccess({
+          email: auth.currentUser?.email,
+          displayName: auth.currentUser?.displayName,
+        })
+      );
       navigate('/');
     }).catch((err) => {
       console.log(err);

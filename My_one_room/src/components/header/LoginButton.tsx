@@ -4,10 +4,14 @@ import { FaUserAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { auth } from "../logIn/UserData";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { LogOutSuccess } from "../../redux/user";
 export default function LoginButton() {
   const navigiate = useNavigate();
+  const dispatch = useDispatch();
   const onLogOut = async() => {
     await auth.signOut();
+    dispatch(LogOutSuccess({email:"" ,displayName:""}));
     navigiate("/");
   };
 
@@ -41,7 +45,6 @@ export default function LoginButton() {
           tabIndex={0}
           className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
         >
-          {/* 나중에 로그인 상태면 로그아웃과, 프로필 항목 나오게 로그아웃 상태면 로그인 할목만 나오게만들자*/}
           <li>
             <Link to={'/profile'}>
             <div className="justify-between">Profile</div>

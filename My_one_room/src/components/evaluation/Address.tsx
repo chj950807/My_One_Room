@@ -5,12 +5,8 @@ import { HiMagnifyingGlass } from "react-icons/hi2";
 interface AddressData {
   address: string;
 }
-interface Props {
-  getAddress: any;
-  getDetailAddress: any;
 
-}
-export default function Address(props:Props) {
+export default function Address() {
   const [openPostcode, setOpenPostcode] = useState<boolean>(false);
   const [address, setAddress] = useState<string>("");
   const [showDetail, setShowDetail] = useState<boolean>(false);
@@ -18,10 +14,7 @@ export default function Address(props:Props) {
 
   const outside = useRef<any>(null);
 
-  const sendAddressValue = () => {
-    props.getAddress(address)
-    props.getDetailAddress(detailAddress);
-  }
+
   const AddressClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setOpenPostcode(true);
@@ -34,7 +27,6 @@ export default function Address(props:Props) {
   const DetailAddressHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setDetailAddress(e.currentTarget.value);
-    sendAddressValue();
   };
 
 

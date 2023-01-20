@@ -2,6 +2,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import DaumPostCode from "react-daum-postcode";
 import { HiMagnifyingGlass } from "react-icons/hi2";
+import { useDispatch } from "react-redux";
+import { realaddress } from "../../redux/evaluate";
 interface AddressData {
   address: string;
 }
@@ -11,6 +13,7 @@ export default function Address() {
   const [address, setAddress] = useState<string>("");
   const [showDetail, setShowDetail] = useState<boolean>(false);
    const [detailAddress, setDetailAddress] = useState<string>("");
+  const dispatch = useDispatch();
 
   const outside = useRef<any>(null);
 
@@ -26,7 +29,12 @@ export default function Address() {
   
   const DetailAddressHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    setDetailAddress(e.currentTarget.value);
+    let real_addr = address + " "+e.currentTarget.value;
+    dispatch(
+      realaddress({
+        address: real_addr,
+      })
+    );
   };
 
 

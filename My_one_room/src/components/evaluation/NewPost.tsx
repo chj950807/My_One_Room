@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { TfiPencil } from "react-icons/tfi";
 import { BiMap } from "react-icons/bi";
@@ -6,17 +6,15 @@ import { auth } from "../logIn/UserData";
 import Head from "../header/Head";
 import Address from "./Address";
 import Evaluation from "./Evaluation";
+import { useSelector} from "react-redux";
 
 export default function NewPost() {
-
+  
+  const result = useSelector((state) => state);
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    try {
-      console.log();
-    } catch (err) {
-      console.log(err);
-    }
+    //redux 저장정보
+    console.log(result);
   };
   return (
     <div>

@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { EvaluationData } from "./EvaluationData.json";
 import StarRating from "./StarRating";
+import { evaluating13 } from "../../redux/evaluate";
 interface Datas {
   id: number;
   check: string;
@@ -10,10 +12,15 @@ interface Datas {
 
 
 export default function Evaluation() {
-  const [eval13, setEval13] = useState<string>("");
+  const dispatch = useDispatch();
+
   const onEvaluateOthers = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
-    setEval13(e.currentTarget.value);
+    dispatch(
+      evaluating13({
+        evaluate13: e.currentTarget.value,
+      })
+    );
   };
 
   return (

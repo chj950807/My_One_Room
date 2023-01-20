@@ -7,15 +7,24 @@ import Head from "../header/Head";
 import Address from "./Address";
 import Evaluation from "./Evaluation";
 import { useSelector} from "react-redux";
+import { sendEvaluateData } from "./sendEvaluateData";
+import { useNavigate } from "react-router-dom";
 
 export default function NewPost() {
   
-  const result = useSelector((state) => state);
+  const result = useSelector((state: any) => state);
+  const navigate = useNavigate();
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //redux 저장정보
-    console.log(result);
+    const date = new Date();
+    sendEvaluateData(result.evaluate.evaluates, result.evaluate.evaluate13, result.evaluate.address, result.user.displayName, date);
+
+    alert('평가해주셔서 감사합니다!');
+    navigate('/');
   };
+
+ 
   return (
     <div>
       <Head />

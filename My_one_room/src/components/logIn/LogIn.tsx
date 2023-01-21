@@ -1,5 +1,4 @@
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useDispatch } from "react-redux";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Head from "../header/Head";
@@ -14,11 +13,10 @@ interface Datas{
   uid: string
 }
 export default function LogIn() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [userData, setUserData] = useState<Datas|null>(null);
+
 
 
   const onEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +38,11 @@ export default function LogIn() {
       ).then(() => {
         console.log(auth.currentUser?.email);
         console.log(auth.currentUser?.displayName);
-        dispatch(LoginSuccess({email:auth.currentUser?.email,displayName:auth.currentUser?.displayName}));
+        if (auth.currentUser!=undefined && auth.currentUser.email!=null &&auth.currentUser.displayName) {
+          localStorage.setItem('email', auth.currentUser?.email);
+          localStorage.setItem('displayName', auth.currentUser?.displayName);
+        }
+
         console.log("로그인 성공");
         navigate("/");
       });
@@ -63,13 +65,14 @@ export default function LogIn() {
     e.preventDefault();
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then((data) => {
-      setUserData(data.user);
-      dispatch(
-        LoginSuccess({
-          email: auth.currentUser?.email,
-          displayName: auth.currentUser?.displayName,
-        })
-      );
+      if (
+        auth.currentUser != undefined &&
+        auth.currentUser.email != null &&
+        auth.currentUser.displayName
+      ) {
+        localStorage.setItem("email", auth.currentUser?.email);
+        localStorage.setItem("displayName", auth.currentUser?.displayName);
+      }
       navigate('/');
     }).catch((err) => {
       console.log(err);

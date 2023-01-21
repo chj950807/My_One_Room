@@ -5,7 +5,7 @@ import Head from "./header/Head";
 import EvaluationRating from "./evaluation/EvaluationRating";
 export default function Home() {
   //firestore 저장정보
-  EvaluationRating();
+  // EvaluationRating();
   return (
     <div>
         <div className="bg-violet-200">

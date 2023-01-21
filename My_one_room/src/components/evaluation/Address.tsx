@@ -1,9 +1,9 @@
-
 import React, { useState, useRef, useEffect } from "react";
 import DaumPostCode from "react-daum-postcode";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { useDispatch } from "react-redux";
 import { realaddress } from "../../redux/evaluate";
+import { LoginSuccess } from "../../redux/user";
 interface AddressData {
   address: string;
 }
@@ -12,11 +12,12 @@ export default function Address() {
   const [openPostcode, setOpenPostcode] = useState<boolean>(false);
   const [address, setAddress] = useState<string>("");
   const [showDetail, setShowDetail] = useState<boolean>(false);
-   const [detailAddress, setDetailAddress] = useState<string>("");
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const outside = useRef<any>(null);
 
+  const Localstorage_email = localStorage.getItem("email");
+  const Localstorage_displayName = localStorage.getItem("displayName");
 
   const AddressClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -25,18 +26,23 @@ export default function Address() {
   const selectAddress = (data: AddressData) => {
     setAddress(data?.address);
     setOpenPostcode(false);
+    dispatch(
+      LoginSuccess({
+        email: Localstorage_email,
+        displayName: Localstorage_displayName,
+      })
+    );
   };
-  
+
   const DetailAddressHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    let real_addr = address + " "+e.currentTarget.value;
+    let real_addr = address + " " + e.currentTarget.value;
     dispatch(
       realaddress({
         address: real_addr,
       })
     );
   };
-
 
   useEffect(() => {
     address ? setShowDetail(true) : setShowDetail(false);
@@ -55,7 +61,6 @@ export default function Address() {
     }
   };
 
-
   return (
     <div>
       <div className="desktop:flex flex-start pl-5 text-base text-blue-600 whitespace-nowrap desktop:items-center">
@@ -73,7 +78,11 @@ export default function Address() {
       </div>
 
       <div className="flex pt-3">
-        <button onClick={AddressClick} className="btn btn-square btn-primary" type="button">
+        <button
+          onClick={AddressClick}
+          className="btn btn-square btn-primary"
+          type="button"
+        >
           <HiMagnifyingGlass className="text-xl font-bold text-white" />
         </button>
         <div>

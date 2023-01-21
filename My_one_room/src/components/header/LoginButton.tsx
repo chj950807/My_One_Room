@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { GrLogin } from "react-icons/gr";
 import { FaUserAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ export default function LoginButton() {
   const dispatch = useDispatch();
   const onLogOut = async() => {
     await auth.signOut();
+    localStorage.clear();
     dispatch(LogOutSuccess({email:"" ,displayName:""}));
     navigiate("/");
   };

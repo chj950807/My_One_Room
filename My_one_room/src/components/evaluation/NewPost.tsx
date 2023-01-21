@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { TfiPencil } from "react-icons/tfi";
 import { BiMap } from "react-icons/bi";
@@ -6,25 +6,70 @@ import { auth } from "../logIn/UserData";
 import Head from "../header/Head";
 import Address from "./Address";
 import Evaluation from "./Evaluation";
-import { useSelector} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { sendEvaluateData } from "./sendEvaluateData";
 import { useNavigate } from "react-router-dom";
+import { post } from "../../redux/evaluate";
 
+const INITIALSTATE = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 export default function NewPost() {
-  
   const result = useSelector((state: any) => state);
   const navigate = useNavigate();
-  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    //redux 저장정보
-    const date = new Date();
-    sendEvaluateData(result.evaluate.evaluates, result.evaluate.evaluate13, result.evaluate.address, result.user.displayName, date);
+  const dispatch = useDispatch();
+  console.log('dispatched?');
+  console.log(result);
+  
+  useEffect(() => {
+    //1번 초기화방법 (shallow copy)?
+    // dispatch(post());
 
-    alert('평가해주셔서 감사합니다!');
-    navigate('/');
+    //2번 초기화방법 (deep copy)?
+    dispatch(
+      post({
+        evaluates: INITIALSTATE.slice(),
+        evaluate13: "",
+        address: "",
+      })
+    );
+  },[])
+  let check = true;
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    console.log(result);
+    e.preventDefault();
+    console.log(result.evaluate.evaluates);
+
+    //어떻게 해야 체크 안했을때를 찾을까
+    for (let i = 0; i < 12; i++) {
+      if (result.evaluate.evaluates[i] == 0 || result.evaluate.address =="") {
+        alert("입력하지 않은 평가항목이 있습니다.");
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+        check = false;
+        break;
+      }
+    }
+
+    if (check) {
+      const date = new Date();
+      sendEvaluateData(
+        result.evaluate.evaluates,
+        result.evaluate.evaluate13,
+        result.evaluate.address,
+        result.user.displayName,
+        date
+      );
+      console.log(result);
+
+      alert("평가해주셔서 감사합니다!");
+      navigate("/");
+      //3번 초기화방법 (페이지 reload) -> 이것도 2번째 평가에서 업로드가 안됨
+      // window.location.reload();
+    }
+    
   };
 
- 
   return (
     <div>
       <Head />
@@ -51,7 +96,7 @@ export default function NewPost() {
                   <BiMap className=" font-sans" />
                   <span className="pl-1 whitespace-nowrap">평가할 방 주소</span>
                 </div>
-                <Address/>
+                <Address />
               </div>
             </div>
           </div>
@@ -61,7 +106,7 @@ export default function NewPost() {
                 <div className="w-2/3 text-center text-3xl border-4 border-black bg-violet-100 card mb-5 ">
                   평가항목
                 </div>
-                <Evaluation/>
+                <Evaluation />
               </div>
               <div className="mt-10">
                 <button

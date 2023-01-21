@@ -9,7 +9,6 @@ interface Datas {
   date: string;
 }
 export default function Mainboard() {
-  console.log(homedata);
   return (
     <div>
       <div className="pt-7">

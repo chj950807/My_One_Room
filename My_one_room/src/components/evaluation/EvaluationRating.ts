@@ -1,15 +1,6 @@
 import { database } from "../logIn/UserData";
 import { useEffect } from "react";
-import {
-  collection,
-  getDocs,
-  QuerySnapshot,
-  Timestamp,
-  updateDoc,
-  getDoc,
-  doc,
-  onSnapshot,
-} from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 
 export default async function EvaluationRating() {
   useEffect(() => {

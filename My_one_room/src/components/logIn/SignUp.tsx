@@ -41,7 +41,14 @@ export default function SignUp() {
         password
       );
       await updateProfile(newUser.user, { displayName: nickname });
-
+      if (
+        auth.currentUser != undefined &&
+        auth.currentUser.email != null &&
+        auth.currentUser.displayName
+      ) {
+        localStorage.setItem("email", auth.currentUser?.email);
+        localStorage.setItem("displayName", auth.currentUser?.displayName);
+      }
       console.log("회원가입 성공");
       navigate("/");
     }

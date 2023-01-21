@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaStar } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { evaluates } from "../../redux/evaluate";
@@ -11,6 +11,7 @@ const INITIALSTATE = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 export default function App(props:Props) {
 
   const dispatch = useDispatch();
+  
   const onClickStar = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 

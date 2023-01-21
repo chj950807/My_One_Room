@@ -11,7 +11,7 @@ import { sendEvaluateData } from "./sendEvaluateData";
 import { useNavigate } from "react-router-dom";
 import { post } from "../../redux/evaluate";
 
-const INITIALSTATE = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const INITIALSTATE = Array(12).fill(0);
 export default function NewPost() {
   const result = useSelector((state: any) => state);
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export default function NewPost() {
     //1번 초기화방법 (shallow copy)?
     // dispatch(post());
 
-    //2번 초기화방법 (deep copy)?
+    //2번 초기화방법 (다른 주소의 배열, deep copy)?
     dispatch(
       post({
         evaluates: INITIALSTATE.slice(),
@@ -64,8 +64,6 @@ export default function NewPost() {
 
       alert("평가해주셔서 감사합니다!");
       navigate("/");
-      //3번 초기화방법 (페이지 reload) -> 이것도 2번째 평가에서 업로드가 안됨
-      // window.location.reload();
     }
     
   };

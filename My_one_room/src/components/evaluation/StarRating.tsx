@@ -1,87 +1,38 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { evaluates } from "../../redux/evaluate";
 interface Props {
   check: string;
   id: number;
 }
-const INITIALSTATE = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const colors = {
+  yellow: "#FACC15",
+  grey:"#a9a9a9"
+}
 
-export default function App(props:Props) {
-
+export default function StarRating(props: Props) {
+  const result = useSelector((state: any) => state);
+  const stars = Array(5).fill(0);
   const dispatch = useDispatch();
   
-  const onClickStar = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-
-    let attr_num;
-    const attr_string = e.currentTarget.getAttribute("star-num");
-    if (attr_string !== null ) {
-      attr_num = Number(attr_string);
-
-    }
-    const input_star = document.getElementsByClassName(`${props.check}`);
-    if (attr_num) {
-      if (attr_num < INITIALSTATE[props.id-1]) {
-        for (let i = 0; i < 5; i++) {
-          input_star[i].classList.remove("text-yellow-400");
-        }
-      }
-      for (let i = 0; i < attr_num; i++) {
-        input_star[i].classList.add("text-yellow-400");
-      }
-      INITIALSTATE.splice(props.id - 1, 1, attr_num);
-    }
-    dispatch(
-      evaluates({
-        evaluates: INITIALSTATE,
-      })
-    );
+  const handleClick = (value: number) => {
+    result.evaluate.evaluates.splice(props.id - 1, 1, value);
+    dispatch(evaluates({ evaluates: result.evaluate.evaluates }));
   };
 
   return (
     <div className="flex text-7xl justify-evenly text-gray-300 w-full rating">
-      <button
-        onClick={onClickStar}
-        type="button"
-        className={props.check}
-        star-num="1"
-      >
-        <FaStar />
-      </button>
-      <button
-        onClick={onClickStar}
-        type="button"
-        className={props.check}
-        star-num="2"
-      >
-        <FaStar />
-      </button>
-      <button
-        onClick={onClickStar}
-        type="button"
-        className={props.check}
-        star-num="3"
-      >
-        <FaStar />
-      </button>
-      <button
-        onClick={onClickStar}
-        type="button"
-        className={props.check}
-        star-num="4"
-      >
-        <FaStar />
-      </button>
-      <button
-        onClick={onClickStar}
-        type="button"
-        className={props.check}
-        star-num="5"
-      >
-        <FaStar />
-      </button>
+      {stars.map((_:any, idx:number) => {
+        return (
+          <FaStar
+            key={idx}
+            style={{ cursor: "pointer" }}
+            color={result.evaluate.evaluates[props.id-1] > idx ? colors.yellow : colors.grey}
+            onClick={() => handleClick(idx + 1)}
+          />
+        );
+      })}
     </div>
   );
 }

@@ -9,12 +9,6 @@ const EVALUATES = "EVALUATES";
 const EVALUATE_13 = "EVALUATE_13";
 const REAL_ADDRESS = "REAL_ADDRESS";
 
-//1번 초기화 방법
-// export const post = () => ({
-//   type: POST,
-// });
-
-//2번 초기화 방법
 export const post = ({
   evaluates,
   evaluate13,
@@ -60,16 +54,6 @@ export default function evaluate(state = initialState, action: any) {
         ...state,
         address: action.payload.address,
       };
-    //1번 초기화 방법
-    // case POST:
-    //   return {
-    //     ...state,
-    //     evaluates:initialState.evaluates,
-    //     evaluate13:initialState.evaluate13,
-    //     address:initialState.address,
-    //   }
-    
-    //2번 초기화 방법
     case POST:
       return {
         ...state,

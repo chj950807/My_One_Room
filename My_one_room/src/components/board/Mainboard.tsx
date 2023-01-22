@@ -1,14 +1,31 @@
-import React from "react";
-import { homedata } from "./dummy.json";
+import React, { useEffect, useState } from "react";
+import { database } from "../logIn/UserData";
+import { collection, onSnapshot,doc,Timestamp } from "firebase/firestore";
+
 import NewpostButton from "./NewpostButton";
 interface Datas {
-  id: number;
-  nickname: string;
+  id?: string;
+  displayName: string;
   address: string;
-  score: number;
+  score: string;
   date: string;
 }
 export default function Mainboard() {
+  const [evaluationdatas, setEvaluationDatas] = useState<any>([{ displayName: "", address: "", score: "", date: "" , id:"initial"}]);
+  
+  console.log(evaluationdatas);
+
+  
+  useEffect(
+    () =>
+      onSnapshot(collection(database, "evaluations"), (snapshot) =>
+        setEvaluationDatas(
+          snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+        )
+      ),
+    []
+  );
+  
   return (
     <div>
       <div className="pt-7">
@@ -28,17 +45,15 @@ export default function Mainboard() {
               </tr>
             </thead>
             <tbody>
-              {homedata.map((data: Datas) => {
-                return (
-                  <tr key={data.id}>
-                    <th>{data.id}</th>
-                    <th>{data.nickname}</th>
-                    <th>{data.address}</th>
-                    <th>{data.score}</th>
-                    <th>{data.date}</th>
-                  </tr>
-                );
-              })}
+              {evaluationdatas.map((data: any, idx: number) => (
+                <tr key={data.id}>
+                  <th>{idx + 1}</th>
+                  <th>{data.displayName}</th>
+                  <th>{data.address}</th>
+                  <th>{data.score}</th>
+                  <th>{data.date}</th>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

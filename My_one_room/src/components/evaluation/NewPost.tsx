@@ -20,10 +20,6 @@ export default function NewPost() {
   console.log(result);
   
   useEffect(() => {
-    //1번 초기화방법 (shallow copy)?
-    // dispatch(post());
-
-    //2번 초기화방법 (다른 주소의 배열, deep copy)?
     dispatch(
       post({
         evaluates: INITIALSTATE.slice(),
@@ -53,12 +49,16 @@ export default function NewPost() {
 
     if (check) {
       const date = new Date();
+      const day = ("0"+date.getDate()).slice(-2);
+      const month = ("0" +(1+date.getMonth())).slice(-2);
+      const year = date.getFullYear();
+      const full_day = year +"-"+month+"-"+day
       sendEvaluateData(
         result.evaluate.evaluates,
         result.evaluate.evaluate13,
         result.evaluate.address,
         result.user.displayName,
-        date
+        full_day
       );
       console.log(result);
 

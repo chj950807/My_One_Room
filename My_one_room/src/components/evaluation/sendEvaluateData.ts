@@ -5,7 +5,7 @@ export const sendEvaluateData = (
   evaluate13: string,
   address: string,
   displayName: string,
-  date:Date,
+  date:string,
 ) => {
  handleNew(evaluates,
   evaluate13,
@@ -29,7 +29,7 @@ const handleNew = async (
   evaluate13: string,
   address: string,
     displayName: string,
-  date:Date
+  date:string
 ) => {
   const evaluate1 = evaluates[0];
   const evaluate2 = evaluates[1];

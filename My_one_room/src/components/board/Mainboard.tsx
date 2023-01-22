@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { database } from "../logIn/UserData";
-import { collection, onSnapshot,doc,Timestamp } from "firebase/firestore";
-
+import { collection, onSnapshot} from "firebase/firestore";
+import { Link } from "react-router-dom";
 import NewpostButton from "./NewpostButton";
+import Pagination from "./Pagination";
 interface Datas {
-  id?: string;
-  displayName: string;
-  address: string;
-  score: string;
-  date: string;
+  id: string,
+  displayName: string,
+  address: string,
+  score: string,
+  date: string
 }
+
 export default function Mainboard() {
   const [evaluationdatas, setEvaluationDatas] = useState<any>([{ displayName: "", address: "", score: "", date: "" , id:"initial"}]);
-  
+  const [page, setPage] = useState(1);
+  const limit = 15;
+  const offset = (page - 1) * limit;
   console.log(evaluationdatas);
 
   
@@ -32,41 +36,57 @@ export default function Mainboard() {
         <div className="text-black text-3xl font-bold font-jua desktop:w-5/6 ">
           <NewpostButton />
         </div>
-        <div className="overflow-x-autoflex flex flex-col  items-center ">
-          <table className=" table table-zebra w-3/4  border-collapse border-white border-4">
+        <div className="overflow-x-autoflex flex flex-col items-center pb-32">
+          <div className="border-collapse border-white border-4 rounded-2xl bg-gray-800  ">
             {/* <!-- head --> */}
-            <thead>
-              <tr>
-                <th></th>
-                <th>작성자</th>
-                <th>주소</th>
-                <th>평점</th>
-                <th>게시일</th>
-              </tr>
-            </thead>
-            <tbody>
-              {evaluationdatas.map((data: any, idx: number) => (
-                <tr key={data.id}>
-                  <th>{idx + 1}</th>
-                  <th>{data.displayName}</th>
-                  <th>{data.address}</th>
-                  <th>{data.score}</th>
-                  <th>{data.date}</th>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            <div>
+              <ul className="grid grid-cols-smMainboard desktop:grid-cols-Mainboard grid-rows-1 border-b-2 text-lg font-bold font-jua h-16 ">
+                <li className="hidden desktop:flex"></li>
+                <li className="hidden desktop:flex items-center pl-3">
+                  작성자
+                </li>
+                <li className="flex justify-center items-center">주소</li>
+                <li className="flex items-center">평점</li>
+                <li className="hidden desktop:flex items-center">게시일</li>
+              </ul>
+            </div>
+
+            <div>
+              {evaluationdatas
+                .slice(offset, offset + limit)
+                .map((data: Datas, idx: number) => (
+                  <ul
+                    key={data.id}
+                    className="grid grid-cols-smMainboard desktop:grid-cols-Mainboard grid-rows-1 whitespace-nowrap text-lg pl-3 h-12 border-b border-gray-600 hover:border-2 hover:border-fuchsia-600 font-jua"
+                  >
+                    <li className="hidden desktop:flex items-center ">
+                      {idx + 1}
+                    </li>
+                    <li className="hidden desktop:flex items-center">
+                      {data.displayName}
+                    </li>
+
+                    <li className="flex items-center pr-5 desktop:pr-20">
+                      <Link to={`/room/${data.id}`}>{data.address}</Link>
+                    </li>
+
+                    <li className="flex items-center">{data.score}</li>
+                    <li className="hidden desktop:flex items-center">
+                      {data.date}
+                    </li>
+                  </ul>
+                ))}
+            </div>
+          </div>
+          <div>
+            <Pagination
+              total={evaluationdatas.length}
+              limit={limit}
+              page={page}
+              setPage={setPage}
+            />
+          </div>
         </div>
-        {/* <h1 className="text-3xl font-bold bg-gray-600 md:bg-gray-100 font-sans">
-        Hello World!
-        </h1>
-        <h2 className="text-7xl bg-indigo-100 desktop:bg-violet-600 font-woowa">
-        안녕하세요!
-        </h2>
-        <h2 className="text-7xl bg-indigo-100 desktop:bg-violet-600 font-dohyeon">
-        안녕하세요!
-        </h2>
-    <input type="range" min="0" max="100" className="range range-primary" /> */}
       </div>
     </div>
   );

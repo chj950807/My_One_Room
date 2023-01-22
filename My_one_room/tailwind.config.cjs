@@ -15,7 +15,13 @@ module.exports = {
       jua: ['Jua', 'sans-serif'],
       dohyeon: ['Do Hyeon', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+      gridTemplateColumns:{
+        'Mainboard': '0.4fr 0.7fr 3fr 0.6fr 1fr',
+        'smMainboard': '4fr 1fr'
+      }
+      
+    },
   },
   plugins: [require("daisyui")],
 }

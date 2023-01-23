@@ -4,6 +4,7 @@ import { collection, onSnapshot} from "firebase/firestore";
 import { Link } from "react-router-dom";
 import NewpostButton from "./NewpostButton";
 import Pagination from "./Pagination";
+import EvaluationRating from "./EvaluationRating";
 interface Datas {
   id: string,
   displayName: string,
@@ -13,22 +14,24 @@ interface Datas {
 }
 
 export default function Mainboard() {
-  const [evaluationdatas, setEvaluationDatas] = useState<any>([{ displayName: "", address: "", score: "", date: "" , id:"initial"}]);
+  //문제생기면 아래 풀기
+  // const [evaluationdatas, setEvaluationDatas] = useState<any>([{ displayName: "", address: "", score: "", date: "" , id:"initial"}]);
   const [page, setPage] = useState(1);
   const limit = 15;
   const offset = (page - 1) * limit;
+  //문제생기면 아래 삭제
+  const evaluationdatas = EvaluationRating();
   console.log(evaluationdatas);
-
-  
-  useEffect(
-    () =>
-      onSnapshot(collection(database, "evaluations"), (snapshot) =>
-        setEvaluationDatas(
-          snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        )
-      ),
-    []
-  );
+  //문제생기면 아래 풀기
+  // useEffect(
+  //   () =>
+  //     onSnapshot(collection(database, "evaluations"), (snapshot) =>
+  //       setEvaluationDatas(
+  //         snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+  //       )
+  //     ),
+  //   []
+  // );
   
   return (
     <div>

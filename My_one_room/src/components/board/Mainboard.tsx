@@ -8,14 +8,14 @@ import EvaluationRating from "./EvaluationRating";
 interface Datas {
   id: string,
   displayName: string,
-  address: string,
+  detailaddress: string,
   score: string,
   date: string
 }
 
 export default function Mainboard() {
   //문제생기면 아래 풀기
-  // const [evaluationdatas, setEvaluationDatas] = useState<any>([{ displayName: "", address: "", score: "", date: "" , id:"initial"}]);
+  // const [evaluationdatas, setEvaluationDatas] = useState<any>([{ displayName: "", detailaddress: "", score: "", date: "" , id:"initial"}]);
   const [page, setPage] = useState(1);
   const limit = 15;
   const offset = (page - 1) * limit;
@@ -32,7 +32,7 @@ export default function Mainboard() {
   //     ),
   //   []
   // );
-  
+
   return (
     <div>
       <div className="pt-7">
@@ -70,7 +70,7 @@ export default function Mainboard() {
                     </li>
 
                     <li className="flex items-center pr-5 desktop:pr-20">
-                      <Link to={`/room/${data.id}`}>{data.address}</Link>
+                      <Link to={`/room/${data.id}`}>{data.detailaddress}</Link>
                     </li>
 
                     <li className="flex items-center">{data.score}</li>

@@ -36,7 +36,7 @@ export default function NewPost() {
 
     //어떻게 해야 체크 안했을때를 찾을까
     for (let i = 0; i < 12; i++) {
-      if (result.evaluate.evaluates[i] == 0 || result.evaluate.address =="") {
+      if (result.evaluate.evaluates[i] == 0 || result.evaluate.detailaddress =="") {
         alert("입력하지 않은 평가항목이 있습니다.");
         window.scrollTo({
           top: 0,
@@ -57,6 +57,7 @@ export default function NewPost() {
         result.evaluate.evaluates,
         result.evaluate.evaluate13,
         result.evaluate.address,
+        result.evaluate.detailaddress,
         result.user.displayName,
         full_day
       );

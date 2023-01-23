@@ -2,12 +2,14 @@ export const initialState = {
   evaluates: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   evaluate13: "",
   address: "",
+  detailaddress:"",
 };
 
 const POST = "POST";
 const EVALUATES = "EVALUATES";
 const EVALUATE_13 = "EVALUATE_13";
-const REAL_ADDRESS = "REAL_ADDRESS";
+const ADDRESS ="ADDRESS"
+const DETAIL_ADDRESS = "DETAIL_ADDRESS";
 
 export const post = ({
   evaluates,
@@ -32,8 +34,12 @@ export const evaluating13 = ({ evaluate13 }: { evaluate13: string }) => ({
   type: EVALUATE_13,
   payload: { evaluate13 },
 });
-export const realaddress = ({ address }: { address: string }) => ({
-  type: REAL_ADDRESS,
+export const detailaddress = ({ detailaddress }: { detailaddress: string }) => ({
+  type: DETAIL_ADDRESS,
+  payload: { detailaddress },
+});
+export const redux_address = ({ address }: { address: string }) => ({
+  type: ADDRESS,
   payload: { address },
 });
 
@@ -49,10 +55,15 @@ export default function evaluate(state = initialState, action: any) {
         ...state,
         evaluate13: action.payload.evaluate13,
       };
-    case REAL_ADDRESS:
+    case ADDRESS:
       return {
         ...state,
         address: action.payload.address,
+      };
+    case DETAIL_ADDRESS:
+      return {
+        ...state,
+        detailaddress: action.payload.detailaddress,
       };
     case POST:
       return {

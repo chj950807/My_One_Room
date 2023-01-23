@@ -1,18 +1,14 @@
 import { database } from "../logIn/UserData";
-import { collection, addDoc, onSnapshot } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 export const sendEvaluateData = (
   evaluates: number[],
   evaluate13: string,
   address: string,
+  detailaddress: string,
   displayName: string,
-  date:string,
+  date: string
 ) => {
- handleNew(evaluates,
-  evaluate13,
-  address,
-     displayName,
-     date)
-
+  handleNew(evaluates, evaluate13, address, detailaddress, displayName, date);
 };
 
 const Evaluate_average = (evaluates: number[]) => {
@@ -28,8 +24,9 @@ const handleNew = async (
   evaluates: number[],
   evaluate13: string,
   address: string,
-    displayName: string,
-  date:string
+  detailaddress: string,
+  displayName: string,
+  date: string
 ) => {
   const evaluate1 = evaluates[0];
   const evaluate2 = evaluates[1];
@@ -42,9 +39,28 @@ const handleNew = async (
   const evaluate9 = evaluates[8];
   const evaluate10 = evaluates[9];
   const evaluate11 = evaluates[10];
-    const evaluate12 = evaluates[11];
-    const score = Evaluate_average(evaluates);
-    const collectionRef = collection(database, "evaluations");
-    const payload = {evaluate1,evaluate2,evaluate3,evaluate4,evaluate5,evaluate6,evaluate7,evaluate8,evaluate9,evaluate10,evaluate11,evaluate12,evaluate13,score,address,displayName,date};
-    const docRef = await addDoc(collectionRef, payload);
+  const evaluate12 = evaluates[11];
+  const score = Evaluate_average(evaluates);
+  const collectionRef = collection(database, "evaluations");
+  const payload = {
+    evaluate1,
+    evaluate2,
+    evaluate3,
+    evaluate4,
+    evaluate5,
+    evaluate6,
+    evaluate7,
+    evaluate8,
+    evaluate9,
+    evaluate10,
+    evaluate11,
+    evaluate12,
+    evaluate13,
+    score,
+    address,
+    detailaddress,
+    displayName,
+    date,
+  };
+  const docRef = await addDoc(collectionRef, payload);
 };

@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import DaumPostCode from "react-daum-postcode";
 import { HiMagnifyingGlass } from "react-icons/hi2";
-import { useDispatch } from "react-redux";
-import { realaddress } from "../../redux/evaluate";
+import { useDispatch,useSelector } from "react-redux";
+import { detailaddress, redux_address } from "../../redux/evaluate";
 import { LoginSuccess } from "../../redux/user";
 interface AddressData {
   address: string;
@@ -10,22 +10,24 @@ interface AddressData {
 
 export default function Address() {
   const [openPostcode, setOpenPostcode] = useState<boolean>(false);
-  const [address, setAddress] = useState<string>("");
   const [showDetail, setShowDetail] = useState<boolean>(false);
-
+  const result = useSelector((state: any) => state);
+  
   const dispatch = useDispatch();
   const outside = useRef<any>(null);
 
   const Localstorage_email = localStorage.getItem("email");
   const Localstorage_displayName = localStorage.getItem("displayName");
-
   const AddressClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setOpenPostcode(true);
   };
   const selectAddress = (data: AddressData) => {
-    setAddress(data?.address);
     setOpenPostcode(false);
+    dispatch(
+      redux_address({
+      address: data.address,
+    }))
     dispatch(
       LoginSuccess({
         email: Localstorage_email,
@@ -36,17 +38,17 @@ export default function Address() {
 
   const DetailAddressHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    let real_addr = address + " " + e.currentTarget.value;
+    let real_addr = result.evaluate.address+ " " + e.currentTarget.value;
     dispatch(
-      realaddress({
-        address: real_addr,
+      detailaddress({
+        detailaddress: real_addr,
       })
     );
   };
-
+  console.log(result.evaluate.address);
   useEffect(() => {
-    address ? setShowDetail(true) : setShowDetail(false);
-  }, [address]);
+    result.evaluate.address ? setShowDetail(true) : setShowDetail(false);
+  }, [result.evaluate.address]);
 
   useEffect(() => {
     document.addEventListener("mousedown", handlerOut);
@@ -64,7 +66,7 @@ export default function Address() {
   return (
     <div>
       <div className="desktop:flex flex-start pl-5 text-base text-blue-600 whitespace-nowrap desktop:items-center">
-        <span className="pr-2">{address}</span>
+        <span className="pr-2">{result.evaluate.address}</span>
         <div className="desktop:flex desktop:flex-start  ">
           {showDetail && (
             <input

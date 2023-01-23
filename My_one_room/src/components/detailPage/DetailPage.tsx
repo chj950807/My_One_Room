@@ -18,7 +18,7 @@ interface Question {
 interface Datas {
   id: string;
   displayName: string;
-  address: string;
+  detailaddress: string;
   score: string;
   date: string;
   evaluate13: string;
@@ -90,7 +90,7 @@ export default function DetailPage() {
                           key={data.id}
                           className="pl-1 text-base  text-blue-600"
                         >
-                          {data.address}
+                          {data.detailaddress}
                         </span>
                       );
                     }
@@ -227,7 +227,7 @@ export default function DetailPage() {
                           key={data.id}
                           className="pl-1 text-base  text-blue-600"
                         >
-                          {data.address}
+                          {data.detailaddress}
                         </span>
                       );
                     }

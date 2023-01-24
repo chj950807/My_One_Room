@@ -16,9 +16,7 @@ export default function NewPost() {
   const result = useSelector((state: any) => state);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log('dispatched?');
-  console.log(result);
-  
+
   useEffect(() => {
     dispatch(
       post({
@@ -30,11 +28,8 @@ export default function NewPost() {
   },[])
   let check = true;
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    console.log(result);
     e.preventDefault();
-    console.log(result.evaluate.evaluates);
 
-    //어떻게 해야 체크 안했을때를 찾을까
     for (let i = 0; i < 12; i++) {
       if (result.evaluate.evaluates[i] == 0 || result.evaluate.detailaddress =="") {
         alert("입력하지 않은 평가항목이 있습니다.");
@@ -61,7 +56,6 @@ export default function NewPost() {
         result.user.displayName,
         full_day
       );
-      console.log(result);
 
       alert("평가해주셔서 감사합니다!");
       navigate("/");

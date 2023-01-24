@@ -8,6 +8,7 @@ import Profile from "./components/profile/Profile";
 import SignUp from "./components/logIn/SignUp";
 import KaKaotmp from "./components/logIn/KaKaotmp";
 import DetailPage from "./components/detailPage/DetailPage";
+import SearchPage from "./components/searchPage/searchPage";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/oauth" element={<KaKaotmp />} />
             <Route path="/room/:roomID" element={<DetailPage />} />
+            <Route path="/search" element={<SearchPage />} />
             {/* <Route path="/login/forgotpassword" element={<FindPassword />} /> */}
           </Routes>
         </BrowserRouter>

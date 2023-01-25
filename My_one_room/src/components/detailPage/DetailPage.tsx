@@ -58,8 +58,9 @@ export default function DetailPage() {
   }
 
   const path = getLastpath();
-  let user = auth.currentUser?.email;
-  console.log(user);
+    let user = auth.currentUser?.email;
+    let display = auth.currentUser?.displayName;
+    console.log(display);
     let current_page_user = "";
     let current_page_id = "";
   EvaluationDatas.map((data: Datas) => {
@@ -203,7 +204,7 @@ export default function DetailPage() {
             </div>
           </div>
           <div>
-            <Comments user={user} />
+            <Comments user={user} display={display} pageId={current_page_id} />
           </div>
         </div>
       </div>
@@ -344,7 +345,7 @@ export default function DetailPage() {
             </div>
           </div>
           <div>
-            <Comments user={user} />
+            <Comments user={user} display={display} pageId={current_page_id} />
           </div>
         </div>
       </div>
@@ -476,7 +477,7 @@ export default function DetailPage() {
             </div>
           </div>
           <div>
-            <Comments user={user} />
+                    <Comments user={user} display={display} pageId={current_page_id } />
           </div>
         </div>
       </div>

@@ -63,6 +63,12 @@ export default function Comments(props: Props) {
             </div>
           </div>
         );
+    } else {
+        return (
+            <div>
+                ,,,
+            </div>
+        )
     }
   
 }

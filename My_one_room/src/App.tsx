@@ -8,7 +8,7 @@ import Profile from "./components/profile/Profile";
 import SignUp from "./components/logIn/SignUp";
 import KaKaotmp from "./components/logIn/KaKaotmp";
 import DetailPage from "./components/detailPage/DetailPage";
-import SearchPage from "./components/searchPage/searchPage";
+import SearchPage from "./components/searchPage/SearchPage";
 
 export default function App() {
   return (

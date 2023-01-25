@@ -7,7 +7,7 @@ export default function Comments(props: Props) {
         e.preventDefault();
     };
 
-    if (props.user === null) {
+    if (props.user === null||props.user ===undefined) {
         return (
           <div>
             <div className="text-center border-4 border-black bg-violet-100 card">
@@ -37,7 +37,7 @@ export default function Comments(props: Props) {
             </div>
           </div>
         );
-    } else {
+    } else if(props.user !==undefined) {
         return (
           <div>
             <div className="text-center border-4 border-black bg-violet-100 card">

@@ -3,12 +3,21 @@ import { collection, addDoc } from "firebase/firestore";
 export const sendEvaluateData = (
   evaluates: number[],
   evaluate13: string,
+  email: string,
   address: string,
   detailaddress: string,
   displayName: string,
   date: string
 ) => {
-  handleNew(evaluates, evaluate13, address, detailaddress, displayName, date);
+  handleNew(
+    evaluates,
+    evaluate13,
+    email,
+    address,
+    detailaddress,
+    displayName,
+    date
+  );
 };
 
 const Evaluate_average = (evaluates: number[]) => {
@@ -23,6 +32,7 @@ const Evaluate_average = (evaluates: number[]) => {
 const handleNew = async (
   evaluates: number[],
   evaluate13: string,
+  email: string,
   address: string,
   detailaddress: string,
   displayName: string,
@@ -40,7 +50,8 @@ const handleNew = async (
   const evaluate10 = evaluates[9];
   const evaluate11 = evaluates[10];
   const evaluate12 = evaluates[11];
-  const score = Evaluate_average(evaluates);
+    const score = Evaluate_average(evaluates);
+    
   const collectionRef = collection(database, "evaluations");
   const payload = {
     evaluate1,
@@ -56,10 +67,11 @@ const handleNew = async (
     evaluate11,
     evaluate12,
     evaluate13,
-    score,
+    email,
     address,
     detailaddress,
     displayName,
+    score,
     date,
   };
   const docRef = await addDoc(collectionRef, payload);

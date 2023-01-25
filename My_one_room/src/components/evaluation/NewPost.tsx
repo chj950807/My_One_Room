@@ -51,12 +51,12 @@ export default function NewPost() {
       sendEvaluateData(
         result.evaluate.evaluates,
         result.evaluate.evaluate13,
+        result.user.email,
         result.evaluate.address,
         result.evaluate.detailaddress,
         result.user.displayName,
         full_day
       );
-
       alert("평가해주셔서 감사합니다!");
       navigate("/");
     }

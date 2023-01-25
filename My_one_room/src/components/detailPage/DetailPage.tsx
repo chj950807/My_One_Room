@@ -44,10 +44,11 @@ export default function DetailPage() {
     return realpath;
   }
 
-  let user = auth.currentUser;
+    let user = auth.currentUser?.email;
+    console.log(user)
   const path = getLastpath();
 
-  if (user === null) {
+  if (user === null ||user===undefined) {
     return (
       <div>
         <Head />
@@ -108,7 +109,9 @@ export default function DetailPage() {
                     <Link to={"/login"}>
                       <span className="text-blue-700">로그인</span>
                     </Link>
-                    <span className="pl-2 text-red-500">후 열람가능 합니다.</span>
+                    <span className="pl-2 text-red-500">
+                      후 열람가능 합니다.
+                    </span>
                   </div>
                   <div className="pt-3 blur-3xl">
                     {EvaluationDatas.map((datas: Datas) => {

@@ -13,7 +13,6 @@ interface Data {
   roomID: string;
 }
 export default function Comments(props: Props) {
-    console.log(props.display);
   const [value, setValue] = useState("");
   const comment = getCommentsData();
   const noAction = (e: React.MouseEvent<HTMLButtonElement>) => {

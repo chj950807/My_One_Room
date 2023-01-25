@@ -13,7 +13,6 @@ export default function Rename() {
 
   const onClickRename = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log("clicked");
     let item = document.getElementById("hidden_item");
     item?.classList.remove("hidden");
     let rename_button = document.getElementById("rename_button_item");

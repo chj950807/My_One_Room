@@ -49,7 +49,6 @@ export default function SignUp() {
         localStorage.setItem("email", auth.currentUser?.email);
         localStorage.setItem("displayName", auth.currentUser?.displayName);
       }
-      console.log("회원가입 성공");
       navigate("/");
     }
   };

@@ -8,7 +8,6 @@ export default async function KaKaoRedirect() {
   let grant_type = "authorization_code";
   let client_id = "b719ebe14a073c660f425715b992a64f";
 
-  console.log(code);
   if (!code) {
     return <Navigate to="/login" />
   }
@@ -24,11 +23,5 @@ export default async function KaKaoRedirect() {
       }
     }
   ); 
-
-  console.log(res);
-  console.log(res.data);
-  console.log(res.config);
-  console.log(res.status);
-  console.log(res.request);
 
 }

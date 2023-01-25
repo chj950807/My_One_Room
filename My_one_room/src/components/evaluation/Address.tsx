@@ -45,7 +45,7 @@ export default function Address() {
       })
     );
   };
-  console.log(result.evaluate.address);
+ 
   useEffect(() => {
     result.evaluate.address ? setShowDetail(true) : setShowDetail(false);
   }, [result.evaluate.address]);

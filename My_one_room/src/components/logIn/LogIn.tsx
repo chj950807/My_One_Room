@@ -36,14 +36,10 @@ export default function LogIn() {
         email,
         password
       ).then(() => {
-        console.log(auth.currentUser?.email);
-        console.log(auth.currentUser?.displayName);
         if (auth.currentUser!=undefined && auth.currentUser.email!=null &&auth.currentUser.displayName) {
           localStorage.setItem('email', auth.currentUser?.email);
           localStorage.setItem('displayName', auth.currentUser?.displayName);
         }
-
-        console.log("로그인 성공");
         navigate("/");
       });
     } catch (err) {

@@ -60,7 +60,6 @@ export default function DetailPage() {
   const path = getLastpath();
     let user = auth.currentUser?.email;
     let display = auth.currentUser?.displayName;
-    console.log(display);
     let current_page_user = "";
     let current_page_id = "";
   EvaluationDatas.map((data: Datas) => {

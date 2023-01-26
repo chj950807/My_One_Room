@@ -33,10 +33,10 @@
 # 🚀Demo
 |로그인, 로그아웃|회원가입, 탈퇴|
 |---|---|
-|<img src ="https://user-images.githubusercontent.com/112573111/214827181-5cce0124-b463-4e77-8d79-1401dca701aa.gif" widh="300" height="200"/>|<img src ="https://user-images.githubusercontent.com/112573111/214827289-1e01d193-7919-4588-b10f-81e6cfa24467.gif" width="300" height="200"/>|
+|<img src ="https://user-images.githubusercontent.com/112573111/214827181-5cce0124-b463-4e77-8d79-1401dca701aa.gif" width="300" height="200"/>|<img src ="https://user-images.githubusercontent.com/112573111/214827289-1e01d193-7919-4588-b10f-81e6cfa24467.gif" width="300" height="200"/>|
 |소셜로그인-구글|소셜로그인-카카오|
-|<img src ="https://user-images.githubusercontent.com/112573111/214828779-bcd6d552-ec46-4e11-8340-58d807a48b05.gif" widh="300" height="200"/>|<img src ="https://user-images.githubusercontent.com/112573111/214829121-22dfaedf-f992-4def-88c9-80f57c0e779a.gif" width="300" height="200"/>|
+|<img src ="https://user-images.githubusercontent.com/112573111/214828779-bcd6d552-ec46-4e11-8340-58d807a48b05.gif" width="300" height="200"/>|<img src ="https://user-images.githubusercontent.com/112573111/214829121-22dfaedf-f992-4def-88c9-80f57c0e779a.gif" width="300" height="200"/>|
 |평가하기|게시글삭제|
-|<img src ="https://user-images.githubusercontent.com/112573111/214829731-73081107-5bb0-4058-b541-138ef7c0ffff.gif" widh="300" height="200"/>|<img src ="https://user-images.githubusercontent.com/112573111/214829811-3dc72102-dc56-4c50-a755-20ba7409edcf.gif" width="300" height="200"/>|
+|<img src ="https://user-images.githubusercontent.com/112573111/214829731-73081107-5bb0-4058-b541-138ef7c0ffff.gif" width="300" height="200"/>|<img src ="https://user-images.githubusercontent.com/112573111/214829811-3dc72102-dc56-4c50-a755-20ba7409edcf.gif" width="300" height="200"/>|
 |게시글 검색|답글달기|
-|<img src ="https://user-images.githubusercontent.com/112573111/214829867-e9502f2e-b393-43d9-b079-11ffafe510a9.gif" widh="300" height="200"/>|<img src ="https://user-images.githubusercontent.com/112573111/214829950-c6343e2d-9f18-484a-a00c-6c631805713e.gif" width="300" height="200"/>|
+|<img src ="https://user-images.githubusercontent.com/112573111/214829867-e9502f2e-b393-43d9-b079-11ffafe510a9.gif" width="300" height="200"/>|<img src ="https://user-images.githubusercontent.com/112573111/214829950-c6343e2d-9f18-484a-a00c-6c631805713e.gif" width="300" height="200"/>|

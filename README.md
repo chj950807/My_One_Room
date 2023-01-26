@@ -26,6 +26,7 @@
 * 별점체크(Star Rating) 를 통한 점수 평가
 * 게시글 삭제, 답글 기능
 * Daum 주소 api를 이용해 검색 기능 제공
+* Tailwind CSS 를 이용한 반응형 디자인 (mobile, desktop)
 
 
 ------

@@ -1,6 +1,6 @@
 # <img src ="https://user-images.githubusercontent.com/112573111/214783969-24c7229f-f9db-4045-b989-34e5863a5387.png" widh="50" height="50"/> My_One_Room
 -------
-![header](https://capsule-render.vercel.app/api?type=Rounded&color=auto&height=150&section=header&text=My%20one%20room&animation=twinkling&fontSize=70&fontColor=ffffff&)
+![header](https://capsule-render.vercel.app/api?type=Rounded&color=auto&height=150&section=header&text=내%20원%20룸&animation=twinkling&fontSize=70&fontColor=ffffff&)
 > 집을 알아볼때 꼭 확인해야할 평가 목록들을 제시하고, 사용자가 방을 평가하게 되면 다른 사용자들과 공유할 수 있는 커뮤니티 입니다.
 
 > [회고 및 트러블슈팅](https://www.notion.so/ed3b58a1ee16475b9597e900e6f5b803)
